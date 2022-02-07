@@ -3,14 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Bulma!</title>
+    <title>Suppliers</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
   </head>
   <body>
   <section class="section">
     <div class="container">
-
-
+        <h1 class="title">Suppliers</h1>
       <table class="table">
           <thead>
               <tr>
@@ -22,7 +21,7 @@
           <tbody>
             {% for supplier in suppliers %}
               <tr>
-                  <td>{{supplier['CompanyName']}}</td>
+                  <td><a href="{{url_for('products', supplier_id=supplier['Id'])}}">{{supplier['CompanyName']}} </a></td>
                   <td>{{supplier['City']}}</td>
                   <td>{{supplier['Country']}}</td>
               </tr>

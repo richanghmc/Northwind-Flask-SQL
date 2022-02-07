@@ -1,14 +1,13 @@
 import sqlite3
 
-def query(query_text):
+def query(query_text, *param):
     conn = sqlite3.connect('Northwind_large.sqlite')
     cur = conn.cursor()
-    cur.execute(query_text)
+    cur.execute(query_text, param)
     
     column_names = []
     for column in cur.description:
         column_names.append(column[0])
-    print(column_names)
 
     rows = cur.fetchall()
     dicts = []
@@ -22,3 +21,20 @@ def query(query_text):
 
 def get_all_suppliers():
     return query("""SELECT * FROM Supplier""")
+
+def get_supplier_products(supplier_id):
+    return query("""
+    SELECT Product.ProductName, Product.QuantityPerUnit, Product.UnitPrice, Supplier.CompanyName, Category.CategoryName
+    FROM Product
+    Inner JOIN Supplier
+		ON Product.SupplierId - Supplier.Id
+		
+    INNER JOIN Category
+		ON Product.CategoryId - Category.Id
+		
+    WHERE SupplierId = ?""" , supplier_id)
+
+def get_supplier_productName(supplier_id):
+    return query("""SELECT CompanyName FROM Supplier 
+                    WHERE Id= ?""" , supplier_id)
+                    

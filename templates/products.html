@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Products</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">{{supplier_name}}</h1>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Supplier</th>
+                        <th>Product Name</th>
+                        <th>Quantity per Unit</th>
+                        <th>Unit Price</th>
+                        <th>CategoryName</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                    <tr>
+                        <td>{{product['CompanyName']}}</td>
+                        <td>{{product['ProductName']}}</td>
+                        <td>{{product['QuantityPerUnit']}}</td>
+                        <td>{{product['UnitPrice']}}</td>
+                        <td>{{product['CategoryName']}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+</body>
+
+</html>
