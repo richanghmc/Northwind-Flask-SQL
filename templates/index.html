@@ -13,7 +13,8 @@
       <table class="table">
           <thead>
               <tr>
-                  <th>Company Name</th>
+                  <th>Name</th>
+                  <th>Product Count</th>
                   <th>City</th>
                   <th>Country</th>
               </tr>
@@ -22,6 +23,7 @@
             {% for supplier in suppliers %}
               <tr>
                   <td><a href="{{url_for('products', supplier_id=supplier['Id'])}}">{{supplier['CompanyName']}} </a></td>
+                  <td>{{supplier['ProductCount']}}</td>
                   <td>{{supplier['City']}}</td>
                   <td>{{supplier['Country']}}</td>
               </tr>

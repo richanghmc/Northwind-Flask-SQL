@@ -13,5 +13,11 @@ def suppliers():
 def products(supplier_id):
     products = database.get_supplier_products(supplier_id)
     supplier_name = database.get_supplier_productName(supplier_id)
-    return render_template('products.html', products=products, supplier_name=supplier_name)
+    supplier_name = supplier_name[0]["CompanyName"]
+    return render_template('products.html', products=products, name=supplier_name)
+
+@app.route("/categories")
+def categories():
+    categories = database.categoryProductCount()
+    return render_template('categories.html', categories=categories)
     
