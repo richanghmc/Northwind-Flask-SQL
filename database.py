@@ -53,3 +53,21 @@ def categoryProductCount():
 	
     GROUP BY CategoryName
     """)
+
+def get_category_products(category_id):
+    return query("""
+    SELECT Supplier.CompanyName, Product.ProductName, Product.SupplierId
+    FROM Product
+
+    INNER JOIN Supplier
+	ON Product.SupplierId = Supplier.Id
+
+    WHERE Product.CategoryId= ? """, category_id)
+
+def get_category(category_id):
+    return query("""
+    SELECT Category.CategoryName
+    FROM Category
+
+    WHERE Category.Id= ?""", category_id)
+    

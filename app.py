@@ -20,4 +20,9 @@ def products(supplier_id):
 def categories():
     categories = database.categoryProductCount()
     return render_template('categories.html', categories=categories)
-    
+
+@app.route("/categories/<int:category_id>")
+def productsInCategory(category_id):
+    products = database.get_category_products(category_id)
+    categoryName = database.get_category(category_id)[0]['CategoryName']
+    return render_template('category.html', products=products, name=categoryName)
